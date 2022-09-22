@@ -27,7 +27,7 @@ Route::get('/sobre-nos', [SobreNosController::class, 'sobreNos'])->name('site.so
 Route::get('/contato', [ContatoController::class, 'contato'])->name('site.contato');
 Route::post('/contato', [ContatoController::class, 'SaveContato'])->name('site.contato');
 Route::get('/teste/{p1}/{p2}', [TesteController::class, 'teste'])->name('site.Teste');
-Route::get('/login', [LoginController::class, 'index'])->name('site.login');
+Route::get('/login/{erro?}', [LoginController::class, 'index'])->name('site.login');
 Route::post('/login', [LoginController::class, 'autenticar'])->name('site.login');
 Route::fallback(function(){echo 'Ih doidão tu tá no lugar errado. <a href="'.route('site.index').'">Clica aqui</a>';});
 
