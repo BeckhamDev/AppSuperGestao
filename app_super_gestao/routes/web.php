@@ -19,6 +19,9 @@ use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\FornecedoresController;
 use App\Http\Controllers\TesteController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProdutoController;
 use App\http\Middleware\LogAcessoMiddleware;
 use GuzzleHttp\Middleware;
 
@@ -32,8 +35,10 @@ Route::post('/login', [LoginController::class, 'autenticar'])->name('site.login'
 Route::fallback(function(){echo 'Ih doidão tu tá no lugar errado. <a href="'.route('site.index').'">Clica aqui</a>';});
 
 Route::middleware('autenticate')->prefix('/app')->group(function(){
-	Route::get('/clientes', function(){return 'Clientes';})->name('app.clientes');
-	Route::get('/fornecedores', [FornecedoresController::class, 'index'])->name('app.fornecedores');
-	Route::get('/produtos', function(){return 'Produtos';})->name('app.produtos');
+	Route::get('/home', [HomeController::class, 'index'])->name('app.home');
+	Route::get('/sair', [LoginController::class, 'sair'])->name('app.sair');
+	Route::get('/cliente', [ClienteController::class, 'index'])->name('app.cliente');
+	Route::get('/fornecedor', [FornecedoresController::class, 'index'])->name('app.fornecedor');
+	Route::get('/produto', [ProdutoController::class, 'index'])->name('app.produto');
 });
 

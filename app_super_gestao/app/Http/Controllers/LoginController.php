@@ -13,9 +13,15 @@ class LoginController extends Controller
         if($request->get('erro')==1){
             $erro =  'Usuário ou senha inseridos são inválidos';    
         }
+        if($request->get('erro')==2){
+            $erro =  'Você não tem permissão para acessar este sistema';    
+        }
 
         return view('site.login', ['titulo'=>'Login', 'erro'=>$erro]);
 
+    }
+    public function sair(){
+        echo 'sair';
     }
     public function autenticar(Request $request){
         
@@ -42,7 +48,13 @@ class LoginController extends Controller
             ->first();
         
         if(isset($usuario->name)){
-            echo "O usuário existe";
+            session_start();
+
+            $_SESSION['nome'] = $usuario->name;
+            $_SESSION['email'] = $usuario->email;
+
+            return redirect()->route('app.home');
+
         }else{
             return redirect()->route('site.login', ['erro'=> 1]);
         };
