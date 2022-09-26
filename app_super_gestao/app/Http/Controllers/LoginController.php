@@ -20,9 +20,8 @@ class LoginController extends Controller
         return view('site.login', ['titulo'=>'Login', 'erro'=>$erro]);
 
     }
-    public function sair(){
-        echo 'sair';
-    }
+   
+
     public function autenticar(Request $request){
         
         $requisito = [
@@ -60,5 +59,10 @@ class LoginController extends Controller
         };
 
 
+    }
+
+    public function sair(){
+        session_destroy();
+        return redirect()->route('site.index');
     }
 }
