@@ -71,7 +71,11 @@ class FornecedoresController extends Controller
     }
 
     public function excluir($id){
+        //Não apaga do banco, somente não exibe mais nas consultas
         Fornecedor::find($id)->delete();
+
+        //forceDelete apaga até do banco
+        //Fornecedor::find($id)->forceDelete();
 
         return redirect()->route('app.fornecedor');
     }
