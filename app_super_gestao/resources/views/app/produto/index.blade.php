@@ -38,8 +38,8 @@
                                     <th>{{$produto->peso}} </th>
                                     <th>{{$produto->unidade_id}} </th>
                                     <th><a href="{{route('produto.show', ['produto'=>$produto->id])}}" target='_blank'>Infos</a></th>
+                                    <th><a href="{{route('produto.edit', ['produto'=>$produto->id])}}" target='_blank'>Editar</a></th>
                                     <th><a href="/" target='_blank'>Excluir</a></th>
-                                    <th><a href="/" target='_blank'>Editar</a></th>
                                 </tr>
 
                             @endforeach
