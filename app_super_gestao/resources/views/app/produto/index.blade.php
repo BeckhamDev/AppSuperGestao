@@ -12,7 +12,7 @@
         <div class= 'menu'>
             <ul>
                 <li><a href="{{route('produto.create')}}">Novo</a></li>
-                <li><a href="/">Consultar</a></li>
+                <li><a href="{{route('produto.index')}}">Consultar</a></li>
             </ul>
         </div>
 
@@ -39,7 +39,14 @@
                                     <th>{{$produto->unidade_id}} </th>
                                     <th><a href="{{route('produto.show', ['produto'=>$produto->id])}}" target='_blank'>Infos</a></th>
                                     <th><a href="{{route('produto.edit', ['produto'=>$produto->id])}}" target='_blank'>Editar</a></th>
-                                    <th><a href="/" target='_blank'>Excluir</a></th>
+                                    <th>
+                                        <form id="form_{{$produto->id}}" method="post" action="{{route('produto.destroy', ['produto'=>$produto->id])}}">
+                                            @method('DELETE')
+                                            @csrf
+                                            <a href="#" onclick="document.getElementById('form_{{$produto->id}}').submit()">Excluir</a>
+                                        </form>
+
+                                    </th>
                                 </tr>
 
                             @endforeach
