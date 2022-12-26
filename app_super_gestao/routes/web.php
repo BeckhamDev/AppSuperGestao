@@ -22,6 +22,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\ProdutoDetalheController;
 use App\http\Middleware\LogAcessoMiddleware;
 use GuzzleHttp\Middleware;
 
@@ -51,5 +52,6 @@ Route::middleware('autenticate')->prefix('/app')->group(function(){
 
     //Produtos
 	Route::resource('produto', ProdutoController::class);
+	Route::resource('produtoDetalhe', ProdutoDetalheController::class);
 });
 
