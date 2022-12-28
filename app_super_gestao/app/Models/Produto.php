@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Produto extends Model
 {
     protected $fillable = ['nome', 'descricao', 'peso', 'unidade_id'];
+
+    /**
+     * Função que vai retornar, caso exista, os detalhes dos produtos
+     */
+    public function produtoDetalhe() {
+        return $this->hasOne(ProdutoDetalhe::class);
+    }
 }

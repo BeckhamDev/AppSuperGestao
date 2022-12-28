@@ -25,6 +25,9 @@
                                 <th>descrição</th>
                                 <th>Peso</th>
                                 <th>Número da Unidade</th>
+                                <th>comprimento</th>
+                                <th>Altura</th>
+                                <th>Largura</th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
@@ -32,11 +35,16 @@
                         </thead>
                         <tbody>
                             @foreach ($produtos as $produto)
+
                                 <tr>
-                                    <th>{{ $produto->nome }}</th>
-                                    <th>{{$produto->descricao}} </th>
-                                    <th>{{$produto->peso}} </th>
-                                    <th>{{$produto->unidade_id}} </th>
+                                    <td>{{ $produto->nome }}</td>
+                                    <td>{{$produto->descricao}} </td>
+                                    <td>{{$produto->peso}} </td>
+                                    <td>{{$produto->unidade_id}} </td>
+                                    <td>{{$produto->produtoDetalhe->comprimento ?? ''}}</td>
+                                    <td>{{$produto->produtoDetalhe->altura ?? ''}}</td>
+                                    <td>{{$produto->produtoDetalhe->largura ?? ''}}</td>
+
                                     <th><a href="{{route('produto.show', ['produto'=>$produto->id])}}" target='_blank'>Infos</a></th>
                                     <th><a href="{{route('produto.edit', ['produto'=>$produto->id])}}" target='_blank'>Editar</a></th>
                                     <th>
