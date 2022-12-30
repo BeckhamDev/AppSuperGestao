@@ -15,7 +15,7 @@
                 <li><a href="{{route('produto.index')}}">Consultar</a></li>
             </ul>
         </div>
-
+        {{-- {{dd($fornecedores)}} --}}
         <div class='informacao-pagina'>
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
                <table border="1" style="text-align:left">
@@ -26,6 +26,10 @@
                     <tr>
                         <td>Nome:</td>
                         <td>{{$produto->nome}}</td>
+                    </tr>
+                    <tr>
+                        <td>ID Fornecedor:</td>:</td>
+                        <td>{{$produto->fornecedor_id}}</td>
                     </tr>
                     <tr>
                         <td>Descrição:</td>
