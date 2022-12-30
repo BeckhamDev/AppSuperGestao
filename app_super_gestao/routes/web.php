@@ -24,6 +24,8 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ProdutoDetalheController;
 use App\http\Middleware\LogAcessoMiddleware;
+use App\Models\Pedido;
+use App\Models\PedidoProduto;
 use GuzzleHttp\Middleware;
 
 Route::get('/', [PrincipalController::class, 'principal'])->name('site.index');
@@ -40,7 +42,6 @@ Route::fallback(function(){echo 'Ih doidão tu tá no lugar errado. <a href="'.r
 Route::middleware('autenticate')->prefix('/app')->group(function(){
 	Route::get('/home', [HomeController::class, 'index'])->name('app.home');
 	Route::get('/sair', [LoginController::class, 'sair'])->name('app.sair');
-	Route::get('/cliente', [ClienteController::class, 'index'])->name('app.cliente');
 	Route::get('/fornecedor', [FornecedoresController::class, 'index'])->name('app.fornecedor');
 	Route::get('/fornecedor/adicionar', [FornecedoresController::class, 'adicionar'])->name('app.fornecedor.adicionar');
 	Route::post('/fornecedor/adicionar', [FornecedoresController::class, 'adicionar'])->name('app.fornecedor.adicionar');
@@ -53,5 +54,8 @@ Route::middleware('autenticate')->prefix('/app')->group(function(){
     //Produtos
 	Route::resource('produto', ProdutoController::class);
 	Route::resource('produtoDetalhe', ProdutoDetalheController::class);
+	Route::resource('cliente', ClienteController::class);
+	Route::resource('pedido', Pedido::class);
+	Route::resource('pedidoProduto', PedidoProduto::class);
 });
 
