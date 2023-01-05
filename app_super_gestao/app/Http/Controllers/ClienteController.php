@@ -26,7 +26,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('app.cliente.create');
     }
 
     /**
@@ -37,7 +37,22 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'nome' => 'required|min:3|max:100'
+        ];
+        $payload = [
+            'required' => 'O nome do cliente precisa ser informado',
+            'min' => 'O nome do cliente precisa ter mais de 3 caracteres',
+            'max' => 'O nome do cliente não pode ter mais de 40 caracteres'
+        ];
+
+        $request->validate($rules, $payload);
+
+        $cliente = new Cliente();
+        $cliente->nome = $request->get('nome');
+        $cliente->save();
+
+        return redirect()->route('cliente.index');
     }
 
     /**
