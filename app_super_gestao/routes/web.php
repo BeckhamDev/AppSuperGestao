@@ -21,6 +21,7 @@ use App\Http\Controllers\TesteController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ProdutoDetalheController;
 use App\http\Middleware\LogAcessoMiddleware;
@@ -52,10 +53,10 @@ Route::middleware('autenticate')->prefix('/app')->group(function(){
 
 
     //Produtos
+	Route::resource('pedido', PedidoController::class);
 	Route::resource('produto', ProdutoController::class);
 	Route::resource('produtoDetalhe', ProdutoDetalheController::class);
 	Route::resource('cliente', ClienteController::class);
-	Route::resource('pedido', Pedido::class);
-	Route::resource('pedidoProduto', PedidoProduto::class);
+	Route::resource('pedidoProduto', PedidoProdutoController::class);
 });
 
