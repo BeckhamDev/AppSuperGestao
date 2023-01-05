@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 class PedidoController extends Controller
@@ -25,7 +26,9 @@ class PedidoController extends Controller
      */
     public function create()
     {
-        //
+        $clientes = Cliente::all();
+
+        return view('app.pedido.create', ['clientes' => $clientes]);
     }
 
     /**
@@ -36,7 +39,21 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'cliente_id' => 'exists:clientes,id'
+        ];
+
+        $payload = [
+            'cliente_id.exists' => 'O cliente selecionado não possui cadastro ou não existe'
+        ];
+
+        $request->validate($rules, $payload);
+
+        $pedido = new Pedido();
+        $pedido->cliente_id = $request->get('cliente_id');
+        $pedido->save();
+
+        return redirect()->route('pedido.index');
     }
 
     /**
